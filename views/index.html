@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	 <!-- Custom styles for this template -->
+    <link href="/basic.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+   
+	
+</head>
+<body>
+<h1>{{ title }}</h1>
+
+<div class="bigFormWrapper">
+
+	<div class="formWrap" >
+		<form action='/add' method='POST'>
+		  Add box :<br>
+		  <input type="text" name="bL"><br>
+		  color:<br>
+		  <input type="text" name="col">
+		  <br>
+		  <input type="submit" value="Submit">
+		</form>
+	</div>
+
+	<div class="formWrap" >
+		<form action='/delete' method='POST'>
+		  remove boxes:<br>
+		  
+		  color:<br>
+		  <input type="text" name="col">
+		  <br>
+		  <input type="submit" value="Submit">
+		</form>
+	</div>
+	<div class="formWrap" >
+		<form action='/update' method='POST'>
+		  update boxes:<br>
+		  <input type="text" name="bL"><br>
+		  color:<br>
+		  <input type="text" name="col">
+		  <br>
+		  <input type="submit" value="Submit">
+		</form>
+	</div>
+
+</div>
+
+
+<br><br>
+
+<div class="clear"></div>
+
+<div id="boxWrap">
+<!-- swig section -->
+{% for box in boxes %}
+
+	<div class='wrapper' style="color:{{box.color}}" >
+		
+		<div class="rectangle" >
+			{{box.name}}
+		</div>
+		
+	</div>
+	<!-- <br><br> -->
+ {% endfor %}
+
+<!--  End swig swection -->
+</div>
+
+<div class="clear">
+
+</body>
+</html>

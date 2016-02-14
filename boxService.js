@@ -9,6 +9,7 @@ module.exports= function(sql){
 
 return {
 		createBox : function (req, res) {
+			console.log(req.body);
 		    var newBox={
 		        name: req.body.name,
 		        color:req.body.color
@@ -19,6 +20,19 @@ return {
 		},
 
 		getBoxes : function (req, res) {
+			var titles=['hello','myBoxes'];
+		    Box.findAll(
+		    	{
+				attributes:['name','color'],
+				order:'createdAt DESC'
+
+				}).then(function (boxes) {
+				//console.log(boxes)
+				res.render('index', { title:titles[2],
+						 boxes:boxes});// tell render engine to render the html
+		    });
+		},
+		query : function (req, res) {
 		    Box.findAll().then(function (boxes) {
 		       res.send(boxes);
 		    });
