@@ -1,0 +1,60 @@
+h1 {
+	margin:10px;
+}
+
+form {
+	margin:10px;
+  
+  padding:5px;
+}
+input{
+	margin:5px;
+}
+
+.rectangle {
+  border: 1px solid black;
+  margin: 10px;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  line-height: 80px;
+  font-size:1em;
+  
+}
+.formWrap {
+  float:left;
+  width:33%;
+  padding:5px;
+
+}
+.bigFormWrapper{
+  float:left;
+  width:100%;
+  min-width: 300px;
+  max-width: 600px;
+  border: solid 1px black;
+}
+
+#boxWrap {
+  float:left;
+  width:100%;
+  min-width: 300px;
+  max-width: 600px;
+  border: solid 1px black;
+}
+
+
+
+
+
+.wrapper {
+  float:left;
+  width:25%;
+}
+
+.clear {
+  border: 1px solid #FFF;
+	overflow: auto;
+	width: 100%
+}
+
