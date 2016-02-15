@@ -15,12 +15,13 @@ return {
 		        color:req.body.color
 		    }
 		    Box.create(newBox).then(function () {
-		        res.send(200);
+		        //res.sendStatus(200)
+		        res.redirect('/boxes');
 		    });
 		},
 
 		getBoxes : function (req, res) {
-			var titles=['hello','myBoxes'];
+			
 		    Box.findAll(
 		    	{
 				attributes:['name','color'],
@@ -28,15 +29,39 @@ return {
 
 				}).then(function (boxes) {
 				//console.log(boxes)
-				res.render('index', { title:titles[2],
+				res.render('index', { title:'Boxes!',
 						 boxes:boxes});// tell render engine to render the html
 		    });
 		},
-		query : function (req, res) {
-		    Box.findAll().then(function (boxes) {
-		       res.send(boxes);
-		    });
+		query : function (callBack) { /// this is my callback version that doesn't work
+
+		    Box.findAll().then( function(boxes){
+		    	//console.log(boxes);
+		    	callBack(boxes);
+		    })
+		},
+		removeBox: function(req,res){
+			console.log(req.body);
+		    var color=req.body.color
+			Box.destroy({where:{color:color}}).then(function(rows) {
+    		console.log('deleted row '+ rows);
+    		res.redirect('/boxes');
+			});
+		},
+		updateBoxes: function(req,res){
+			   console.log(req.body)
+				var boxName=req.body.name//box label
+				var boxColor=req.body.color//box color
+			    Box.update(
+			    	{color:boxColor},
+			    	{where:{name:boxName}}
+			    	).then(function(rows){
+				    	console.log('updated row '+ rows);
+	    				res.redirect('/boxes');	
+			    	})
 		}
+		
+
 	};//end return
 };
 

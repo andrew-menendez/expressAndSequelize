@@ -22,11 +22,20 @@ var boxService=require('./../boxService.js')(sql);
 //console.dir(boxService);
 
 //home page route.... 
-router.get('/', boxService.getBoxes);
+// router.get('/', boxService.getBoxes);
 
-router.get('/boxes',boxService.query);
-router.post('/boxes',boxService.createBox)
+router.get('/', function(req, res, next){
+  boxService.query(function(err, boxes){
+  	console.log(boxes);
+   res.render('index', { title:'hello',boxes:boxes});//
+  });
+});
+// this doesn't work ^^, why??
 
+router.get('/boxes',boxService.getBoxes);
+router.post('/add',boxService.createBox);
+router.post('/delete',boxService.removeBox);
+router.post('/update',boxService.updateBoxes);
 
 return router;
 
